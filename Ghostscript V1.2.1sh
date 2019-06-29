@@ -14,8 +14,6 @@ menuone=$(zenity --title="Main Menu - $PROG $VERSION - $NAME" --width 540 --heig
 		FALSE 1 "Software Installer Menu" "Choose from a list of software to install" \
 		FALSE 2 "System Restore Menu" "Options for restoring system") 
 
-
-
 for selected in $menuone; do
 case $selected in
 1)
@@ -31,52 +29,36 @@ menutwo=$(zenity --title="Software Selection Menu - $PROG - $VERSION - $NAME"  -
 		FALSE 5 "Steam" "Digital game store for Windows, Mac and Linux platforms")
 ;;
 
-2)
-menuthree=$(zenity --title="System Restore Menu - $PROG $VERSION - $NAME"  --width 700 --height 160 \
-	--text="Select:" \
-	--list --checklist \
-	--column="Selected" --column="Short Name" --column="Name" --column="Description" \
-	--hide-column=2\
-		FALSE 1 "Backup" "choose directories to Backup" \
-		FALSE 2 "Restore" "Restore the entire Backup to $HOME")
-;;
-
-
 esac
 done
 
 for selected in $menutwo; do
 	case $selected in
-	1)
-		##Skype installer 
+	1) ##Skype installer 
 		cd "$HOME/Downloads"
 		wget -o http://download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb 2>&1 | sed -u "$ETA" | zenity --progress --title="Downloading Installer" --auto-close 
 		zenity --info --title="Completed" --text="Skype downloaded to $HOME/Downloads" \ 
 		;;	
 
-	2)	
-		##Viber Installer
+	2) ##Viber Installer
 		cd "$HOME/Downloads"
 		wget -o http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb 2>&1 | sed -u "$ETA" | zenity --progress --title="Downloading" --auto-close 
 		zenity --info --title="Completed" --text="Viber has been downloaded to $HOME/Downloads" \ 
 		;;
 
-	3)
-		##Mincraft installer##
+	3) #Mincraft installer##
 		cd "$HOME/Downloads"
 		wget -o https://launchpad.net/~minecraft-installer-peeps/+archive/ubuntu/minecraft-installer/+build/6255556/+files/minecraft-installer_0.1%2Br11%7Eubuntu14.04.1_amd64.deb 2>&1 | sed -u "$ETA" | zenity --progress --title="Downloading" --auto-close
 		zenity --info --title="Completed" --text="Minecraft installer downloaded to $HOME/Downloads" \
 		;;
-	4)
 
-		##Google Chrome installer##
+	4) ##Google Chrome installer##
 		cd "$HOME/Downloads"
 		wget -o https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 2>&1 | sed -u "$ETA" | zenity --progress --title="Downloading"  --auto-close
 		zenity --info --title="Completed" --text="Google Chrome Installer downloaded to $HOME/Downloads" \
 		;;
 
-	5)
-		##Steam Installer##		
+	5) ##Steam Installer##
 		cd "$HOME/Downloads"
 		wget -o http://media.steampowered.com/client/installer/steam.deb 2>&1 | sed -u "$ETA" | zenity --progress --title="Downloading Installer"  --auto-close
 		zenity --info --title="Completed" --text="Steam Software Distribution Client downloaded to $HOME/Downloads" \
@@ -84,11 +66,6 @@ for selected in $menutwo; do
 	esac
 done
 
-
-
-
-for selected in $menuthree; do
-    if [ "$selected" = "1" ];
 	then
     BFILE=$(zenity --file-selection \
 				--separator=":" \
@@ -158,4 +135,3 @@ case $? in
                 echo "An unexpected error has occurred.";;
 esac
  fi
-done
